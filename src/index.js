@@ -28,7 +28,6 @@ function drawImage() {
 
         var img = new Image();
         img.src = `./img/static_background.png`;
-        var boxart = new Image();
         //boxart.src = 'https://static-cdn.jtvnw.net/ttv-boxart/Fortnite-200x300.jpg';
         img.onload = function() {
             fetch('https://www.xboxplaydates.us/api//ambassadorssplashimage')
@@ -36,6 +35,7 @@ function drawImage() {
             .then((data) => {
                 ctx.drawImage(img, 0, 0, _width, _height);
                 ctx.fillStyle = 'white';
+                console.log("Data: " + JSON.stringify(data));
     
                 ctx.font = "bold 54px 'Segoe UI',Arial,sans-serif"
                 ctx.textAlign = 'center';
@@ -48,46 +48,54 @@ function drawImage() {
                 var showSpacingWidth = 1222 / (numberOfShows + 1);
                 var x = showSpacingWidth;
                 var y = 200;
+
+                console.log("x: " + x);
+                console.log("y: " + y);
                 
-                ctx.font = "bolder italic 34px 'Segoe UI',Arial,sans-serif";
+                //show 1
+                ctx.font = "bolder italic 20px 'Segoe UI',Arial,sans-serif";
                 ctx.fillText(data[0].gameName, x, y); // x, y
     
-                boxArtURL = data[0].gameImage.replace("{width}x{height}", "200x300")
+                var boxArtURL = data[0].gameImage.replace("{width}x{height}", "200x300")
+                console.log("boxart: " + boxArtURL);
+                var boxart = new Image();
                 boxart.src = boxArtURL;
-                ctx.drawImage(boxart, (x-100), (y+10)); // x-100, y+10
+                ctx.drawImage(boxart, (x-100), (y+10), 200, 300); // x-100, y+10
     
                 ctx.font = "bold 20px 'Segoe UI'"
                 ctx.fillText(data[0].showStartTime, x, (y + 340)) // x, y+340
     
-                ctx.font = "bold 25px 'Segoe UI'"
+                ctx.font = "bold 22px 'Segoe UI'"
                 ctx.fillText(data[0].showName, x, (y+370)) //x, y+370
     
                 //show 2
-                ctx.font = "bolder italic 34px 'Segoe UI',Arial,sans-serif";
-                ctx.fillText(data[1].ganeName, (2 * x), y); // 2x, y
+                ctx.font = "bolder italic 20px 'Segoe UI',Arial,sans-serif";
+                ctx.fillText(data[1].gameName, (2 * x), y); // 2x, y
     
-                boxArtURL = data[1].gameImage.replace("{width}x{height}", "200x300")
-                boxart.src = boxArtURL;
-                ctx.drawImage(boxart, ((2* x)-100), (y+10)); // 2x-100, y+10
+                var boxart2 = new Image();
+                var boxArt2URL = data[1].gameImage.replace("{width}x{height}", "200x300")
+                boxart2.src = boxArt2URL;
+                ctx.drawImage(boxart2, ((2* x)-100), (y+10)); // 2x-100, y+10
                 
                 ctx.font = "bold 20px 'Segoe UI'"
                 ctx.fillText(data[1].showStartTime, (2* x), (y + 340)) // 2x, y+340
                 
-                ctx.font = "bold 25px 'Segoe UI'"
+                ctx.font = "bold 22px 'Segoe UI'"
                 ctx.fillText(data[1].showName, (2* x), (y+370)) //2x, y+370
     
                 //show 3
-                ctx.font = "bolder italic 34px 'Segoe UI',Arial,sans-serif";
+                ctx.font = "bolder italic 20px 'Segoe UI',Arial,sans-serif";
                 ctx.fillText(data[2].gameName, (3* x), y); // 3x, y
     
-                boxArtURL = data[2].gameImage.replace("{width}x{height}", "200x300")
-                boxart.src = boxArtURL;
-                ctx.drawImage(boxart, ((3* x)-100), (y+10)); // 3x-100, y+10
+                var boxart3 = new Image();
+                var boxArt3URL = data[2].gameImage.replace("{width}x{height}", "200x300")
+                boxart3.src = boxArt3URL;
+                ctx.drawImage(boxart3, ((3* x)-100), (y+10)); // 3x-100, y+10
     
                 ctx.font = "bold 20px 'Segoe UI'"
                 ctx.fillText(data[2].showStartTime, (3* x), (y + 340)) // 3x, y+340
                 
-                ctx.font = "bold 25px 'Segoe UI'"
+                ctx.font = "bold 22px 'Segoe UI'"
                 ctx.fillText(data[2].showName, (3* x), (y+370)) //3x, y+370
                 //end of show cards
     
